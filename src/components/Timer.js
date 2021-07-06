@@ -4,16 +4,8 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
 
-    let timeString = '0:00';
-    let totalTime = 0;
-
-    if (
-      JSON.parse(localStorage.getItem('totalTime')) !== null &&
-      JSON.parse(localStorage.getItem('totalTime')) !== NaN
-    ) {
-      totalTime = JSON.parse(localStorage.getItem('totalTime'));
-      timeString = convertSec(totalTime);
-    }
+	let totalTime = JSON.parse(localStorage.getItem('totalTime')) || 0;
+    let timeString = convertSec(totalTime) || '0:00';
 
     this.state = {
       timerIsRunning: false,

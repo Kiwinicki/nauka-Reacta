@@ -58,12 +58,14 @@ class App extends React.Component {
 
   addTodoElement(inputValue) {
     if (inputValue == '') return; // w przyszłości można dać regex
-    // Right way (bez mutowania stanu tylko skopiowanie i dodanie nowego elem)
-    this.setState({
-      todo: [...this.state.todo, this.state.inputValue],
-      inputValue: '',
-    });
-    localStorage.setItem('todo', JSON.stringify(this.state.todo));
+    // Right way (bez mutowania stanu tylko skopiowanie i dodanie nowego elementu)
+    this.setState(
+      {
+        todo: [...this.state.todo, this.state.inputValue],
+        inputValue: '',
+      },
+      () => localStorage.setItem('todo', JSON.stringify(this.state.todo)) // callback wywyoływany po ustawieniu setState
+    );
     // Wrong way (z mutowaniem stanu)
     // this.state.todo.push(this.state.inputValue);
     // this.setState({ todo: this.state.todo, inputValue: '' });

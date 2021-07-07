@@ -4,7 +4,7 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
 
-	let totalTime = JSON.parse(localStorage.getItem('totalTime')) || 0;
+    let totalTime = JSON.parse(localStorage.getItem('totalTime')) || 0;
     let timeString = convertSec(totalTime) || '0:00';
 
     this.state = {
@@ -18,25 +18,25 @@ class Timer extends React.Component {
     return (
       <div>
         <h2>Ile czasu spędziłem na naukę Reacta</h2>
-        <button onClick={this.startTimer}>start</button>
-        <button onClick={this.stopTimer}>stop</button>
+        <button onClick={this.toggleTimer}>
+          {this.state.timerIsRunning ? 'stop' : 'start'}
+        </button>
         <p>{this.state.timeString}</p>
       </div>
     );
   }
 
-  startTimer = () => {
-    if (this.state.timerIsRunning === false) {
-      this.setState({ timerIsRunning: true });
-      this.interval = setInterval(() => this.tick(), 1000);
-    }
-  };
-
-  stopTimer = () => {
-    if (this.state.timerIsRunning === true) {
-      this.setState({ timerIsRunning: false });
-      clearInterval(this.interval);
-    }
+  toggleTimer = () => {
+    this.setState(
+      (pervState) => {
+        return { timerIsRunning: !pervState.timerIsRunning };
+      },
+      () => {
+        this.state.timerIsRunning
+          ? (this.interval = setInterval(() => this.tick(), 1000))
+          : clearInterval(this.interval);
+      }
+    );
   };
 
   tick = () => {

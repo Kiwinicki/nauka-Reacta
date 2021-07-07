@@ -5,9 +5,67 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(43, 43, 43);
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.listTitle {
+	text-align: center;
+}
+
+input {
+	box-sizing: border-box;
+	height: 30px;
+	width: 50vw;
+	border-radius: 7px 0 0 7px;
+	border: none;
+}
+
+.addToListBtn {
+	height: 30px;
+	padding: 6px 10px;
+	border: none;
+	border-radius: 0 7px 7px 0;
+	color: white;
+}
+
+.listItem {
+margin: 12px 0;
+}
+
+.removeBtn, .iKnowItAlreadyBtn, .toggleTimerBtn {
+	margin-left: 10px;
+	padding: 6px 10px;
+	border: none;
+	border-radius: 7px;
+	color: white;
+}
+
+.removeBtn {
+	background-color: rgb(209, 66, 66);
+}
+
+.iKnowItAlreadyBtn, .addToListBtn, .toggleTimerBtn {
+	background-color: rgb(90, 160, 68);
+}
+
+p {
+	text-align: center;
+}
+
+.time {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.toggleTimerBtn {
+	display: block;
+	margin: 0 auto;
+	font-size: 1.3rem;
 }

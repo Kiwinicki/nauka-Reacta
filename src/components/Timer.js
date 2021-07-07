@@ -18,19 +18,17 @@ class Timer extends React.Component {
     return (
       <div>
         <h2>Ile czasu spędziłem na naukę Reacta</h2>
-        <button onClick={this.toggleTimer}>
+        <p className="time">{this.state.timeString}</p>
+        <button className="toggleTimerBtn" onClick={this.toggleTimer}>
           {this.state.timerIsRunning ? 'stop' : 'start'}
         </button>
-        <p>{this.state.timeString}</p>
       </div>
     );
   }
 
   toggleTimer = () => {
     this.setState(
-      (pervState) => {
-        return { timerIsRunning: !pervState.timerIsRunning };
-      },
+      (pervState) => ({ timerIsRunning: !pervState.timerIsRunning }),
       () => {
         this.state.timerIsRunning
           ? (this.interval = setInterval(() => this.tick(), 1000))

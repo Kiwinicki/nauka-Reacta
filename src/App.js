@@ -25,10 +25,12 @@ class App extends React.Component {
         <div>
           <TodoInput
             inputValue={this.state.inputValue}
-            onChange={(e) => this.handleInput(e)}
-            onClick={(value) => this.addTodoElement(value)}
+            onChange={(e) => this.handleInputChange(e)}
+            onClick={() => this.addTodoElement()}
           />
-          <h2>TO DO list:</h2>
+        </div>
+        <div>
+          <h2 className="listTitle">TO DO list:</h2>
           <TodoList
             todo={this.state.todo}
             onClick={(el) => this.moveToDoneList(el)}
@@ -36,7 +38,7 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <h2>DONE list:</h2>
+          <h2 className="listTitle">DONE list:</h2>
           <DoneList
             done={this.state.done}
             removeOnClick={(el) => this.removeItem(el, 'done')}
@@ -51,13 +53,12 @@ class App extends React.Component {
     console.log(new Error(err, info));
   }
 
-  handleInput(event) {
-    const newValue = event.target.value;
-    this.setState({ inputValue: newValue });
+  handleInputChange(event) {
+    this.setState({ inputValue: event.target.value });
   }
 
-  addTodoElement(inputValue) {
-    if (inputValue == '') return; // w przyszłości można dać regex
+  addTodoElement() {
+    if (this.state.inputValue === '') return;
     // Right way (bez mutowania stanu tylko skopiowanie i dodanie nowego elementu)
     this.setState(
       {
